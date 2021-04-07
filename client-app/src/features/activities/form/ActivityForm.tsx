@@ -13,7 +13,7 @@ import MyTextArea from "../../../app/common/form/MyTextArea";
 import MySelectInput from "../../../app/common/form/MySelectInput";
 import { categoryOptions } from "../../../app/common/options/categoryOptions";
 import MyDateInput from "../../../app/common/form/MyDateInput";
-import { Activity } from "../../../app/models/Activity";
+import { ActivityFormValues } from "../../../app/models/Activity";
 
 export default observer(function ActivityForm() {
   const history = useHistory();
@@ -21,21 +21,14 @@ export default observer(function ActivityForm() {
   const {
     createActivity,
     updateActivity,
-    loading,
     loadActivity,
     loadingInitial,
   } = activityStore;
   const { id } = useParams<{ id: string }>();
 
-  const [activity, SetActivity] = useState<Activity>({
-    id: "",
-    title: "",
-    category: "",
-    description: "",
-    date: null,
-    city: "",
-    venue: "",
-  });
+  const [activity, SetActivity] = useState<ActivityFormValues>(
+    new ActivityFormValues()
+  );
 
   const validationSchema = Yup.object({
     title: Yup.string().required("The activity title is required"),
@@ -47,11 +40,14 @@ export default observer(function ActivityForm() {
   });
 
   useEffect(() => {
-    if (id) loadActivity(id).then((activity) => SetActivity(activity!));
+    if (id)
+      loadActivity(id).then((activity) =>
+        SetActivity(new ActivityFormValues(activity))
+      );
   }, [id, loadActivity]);
 
-  function handleFormSubmit(activity: Activity) {
-    if (activity.id.length === 0) {
+  function handleFormSubmit(activity: ActivityFormValues) {
+    if (!activity.id) {
       let newActivity = {
         ...activity,
         id: uuid(),
@@ -98,7 +94,7 @@ export default observer(function ActivityForm() {
             <MyTextInput placeholder="Venue" name="venue" />
             <Button
               disabled={isSubmitting || !dirty || !isValid}
-              loading={loading}
+              loading={isSubmitting}
               floated="right"
               positive
               type="submit"
