@@ -3,7 +3,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Application.Core;
 using MediatR;
-using Persistance;
+using Persistence;
 
 namespace Application.Activities
 {
