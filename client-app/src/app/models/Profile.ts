@@ -28,3 +28,10 @@ export interface Photo {
 export interface PhotoFile extends File {
     preview: string;
 }
+
+export interface UserActivity {
+    id: string;
+    title: string;
+    category: string;
+    date: Date;
+}
