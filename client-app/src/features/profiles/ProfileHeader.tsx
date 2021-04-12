@@ -5,6 +5,7 @@ import {
   Grid,
   Header,
   Item,
+  ItemGroup,
   Segment,
   Statistic,
 } from "semantic-ui-react";
@@ -20,7 +21,7 @@ export default observer(function ProfileHeader({ profile }: Props) {
     <Segment>
       <Grid>
         <Grid.Column width={12}>
-          <Item.Group>
+          <ItemGroup>
             <Item>
               <Item.Image
                 avatar
@@ -31,7 +32,7 @@ export default observer(function ProfileHeader({ profile }: Props) {
                 <Header as="h1" content={profile.displayName} />
               </Item.Content>
             </Item>
-          </Item.Group>
+          </ItemGroup>
         </Grid.Column>
         <Grid.Column width={4}>
           <Statistic.Group widths={2}>
