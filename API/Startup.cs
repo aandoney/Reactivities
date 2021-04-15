@@ -64,7 +64,8 @@ namespace API
                 .ScriptSources(s => s.Self().CustomSources(
                     "sha256-ujGjH2UCT1zio4NbjaXfJKPvx/y6Nwv0T3ZJBMkHMR4=",
                     "https://connect.facebook.net",
-                    "sha256-p6g224elQSjyOuGIa6dNq2OkPzKgeu4UJCJsb1XDZQE="
+                    "sha256-p6g224elQSjyOuGIa6dNq2OkPzKgeu4UJCJsb1XDZQE=",
+                    "sha256-cR5o68dGgQhfVnZgslN/if12z/fAaGNBZPU6YSZfzsU="
                 ))
             );
 
